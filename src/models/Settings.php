@@ -37,17 +37,26 @@ class Settings extends Model
     private $authMethods = [];
 
     /**
+     * @var array
+     */
+    private $cors = [];
+
+    /**
+     * @param array $cors
+     * @return $this
+     */
+    public function setCORS(array $cors = [])
+    {
+        $this->cors = $cors;
+        return $this;
+    }
+
+    /**
      * @return array
      */
     public function getCORS(): array
     {
-        return [
-            'Origin' => ['*'],
-            'Access-Control-Request-Headers' => ['*'],
-            'Access-Control-Allow-Credentials' => null,
-            'Access-Control-Max-Age' => 86400,
-            'Access-Control-Expose-Headers' => [],
-        ];
+        return $this->cors;
     }
 
     /**
@@ -76,7 +85,8 @@ class Settings extends Model
         return array_merge(
             parent::attributes(),
             [
-                'authMethods'
+                'authMethods',
+                'cors'
             ]
         );
     }

@@ -1,8 +1,8 @@
 # RESTful API for Craft CMS
-[![Join the chat at https://gitter.im/flipboxfactory/restful](https://badges.gitter.im/flipboxfactory/restful.svg)](https://gitter.im/flipboxfactory/restful?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Join the chat at https://gitter.im/flipboxfactory/craft-restful](https://badges.gitter.im/flipboxfactory/craft-restful.svg)](https://gitter.im/flipboxfactory/craft-restful?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Latest Version](https://img.shields.io/github/release/flipboxfactory/craft-restful.svg?style=flat-square)](https://github.com/flipboxfactory/craft-restful/releases)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE.md)
-[![Build Status](https://img.shields.io/travis/flipboxfactory/craft-restful/master.svg?style=flat-square)](https://travis-ci.com/flipboxfactory/craft-restful)
+[![Build Status](https://img.shields.io/travis/flipboxfactory/craft-restful/master.svg?style=flat-square)](https://travis-ci.org/flipboxfactory/craft-restful)
 [![Coverage Status](https://img.shields.io/scrutinizer/coverage/g/flipboxfactory/craft-restful.svg?style=flat-square)](https://scrutinizer-ci.com/g/flipboxfactory/craft-restful/code-structure)
 [![Quality Score](https://img.shields.io/scrutinizer/g/flipboxfactory/craft-restful.svg?style=flat-square)](https://scrutinizer-ci.com/g/flipboxfactory/craft-restful)
 [![Total Downloads](https://img.shields.io/packagist/dt/flipboxfactory/craft-restful.svg?style=flat-square)](https://packagist.org/packages/flipboxfactory/craft-restful)

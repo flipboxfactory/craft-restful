@@ -32,6 +32,11 @@ class Settings extends Model
     public $pageSizeLimit = [0, 1, 50, 100, 200, 500, 1000];
 
     /**
+     * @var int
+     */
+    public $defaultPageSize = 50;
+
+    /**
      * @var array
      */
     private $authMethods = [];

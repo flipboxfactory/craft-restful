@@ -9,6 +9,7 @@
 namespace flipbox\craft\restful\data;
 
 use flipbox\craft\restful\Restful;
+use yii\data\Pagination;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
@@ -17,15 +18,21 @@ use flipbox\craft\restful\Restful;
 trait PaginationTrait
 {
     /**
+     * @param array $config
      * @return array
      */
-    protected function paginationConfig(): array
+    protected function paginationConfig(array $config = []): array
     {
         $settings = Restful::getInstance()->getSettings();
-        return [
-            'pageSizeParam' => $settings->pageSizeParam,
-            'pageParam' => $settings->pageParam,
-            'pageSizeLimit' => $settings->pageSizeLimit
-        ];
+        return array_merge(
+            [
+                'class' => Pagination::class,
+                'pageSizeParam' => $settings->pageSizeParam,
+                'pageParam' => $settings->pageParam,
+                'pageSizeLimit' => $settings->pageSizeLimit,
+                'defaultPageSize' => $settings->defaultPageSize,
+            ],
+            $config
+        );
     }
 }

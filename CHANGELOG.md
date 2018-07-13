@@ -1,5 +1,9 @@
 Changelog
 =========
+## 1.0.0-rc.2
+### Changed
+- Updated to Transform package v3
+
 ## 1.0.0-rc.1 - 2018-05-16
 ### Added
 - CORS configuration can be overwritten via settings

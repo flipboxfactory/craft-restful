@@ -1,15 +1,14 @@
 {
   "name": "flipboxfactory/craft-restful",
   "description": "A RESTful API for Craft CMS",
-  "version": "1.0.0-rc.1",
+  "version": "1.0.0-rc.2",
   "type": "craft-plugin",
   "require": {
-    "craftcms/cms": "~3.0.0-RC",
-    "justinrainbow/json-schema": "^5.2",
+    "craftcms/cms": "^3.0",
     "flipboxfactory/craft-rest": "~2.0.0-rc.4",
-    "flipboxfactory/craft-ember": "~1.0.0-rc",
+    "flipboxfactory/craft-ember": "^1.0",
     "flipboxfactory/craft-rbac": "~1.0.0-rc",
-    "flipboxfactory/flux": "~1.0.0-rc"
+    "flipboxfactory/flux": "~1.0.0-rc.5"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.0",
@@ -33,15 +32,6 @@
     "class": "flipbox\\craft\\restful\\Restful",
     "schemaVersion": "1.0.0",
     "hasCpSettings": false,
-    "hasCpSection": false,
-    "components": {
-      "authManager": {
-        "class": "flipbox\\craft\\rbac\\DbManager",
-        "itemTable": "{{%restful_rbac_item}}",
-        "itemChildTable": "{{%restful_rbac_item_child}}",
-        "assignmentTable": "{{%restful_rbac_assignment}}",
-        "ruleTable": "{{%restful_rbac_rule}}"
-      }
-    }
+    "hasCpSection": false
   }
 }

@@ -11,8 +11,8 @@ namespace flipbox\craft\restful\helpers;
 use craft\db\Migration;
 use craft\helpers\StringHelper;
 use yii\base\Action;
-use yii\rbac\Permission;
 use yii\base\Controller;
+use yii\rbac\Permission;
 use yii\web\UrlRule;
 
 /**

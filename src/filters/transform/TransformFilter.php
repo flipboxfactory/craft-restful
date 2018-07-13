@@ -11,8 +11,7 @@ namespace flipbox\craft\restful\filters\transform;
 use Craft;
 use flipbox\craft\restful\Restful;
 use flipbox\flux\filters\TransformFilter as BaseTransformFilter;
-use flipbox\flux\Flux;
-use Flipbox\Transform\Transformers\TransformerInterface;
+use Flipbox\Transform\Factory;
 use yii\base\Model;
 use yii\data\DataProviderInterface;
 use yii\data\Pagination;
@@ -35,12 +34,12 @@ class TransformFilter extends BaseTransformFilter
     const ERROR_IDENTIFIER = 'error';
 
     /**
-     * @var string|callable|TransformerInterface
+     * @var null|string|callable
      */
     public $error = self::ERROR_IDENTIFIER;
 
     /**
-     * @var string|callable|TransformerInterface
+     * @var null|string|callable
      */
     public $pagination = self::PAGINATION_IDENTIFIER;
 
@@ -49,7 +48,7 @@ class TransformFilter extends BaseTransformFilter
      *
      * @var
      */
-    public $scope = Restful::TRANSFORMER_SCOPE;
+    public $scope = Restful::FLUX_SCOPE;
 
     /**
      * @var string the name of the HTTP header containing the information about total number of data items.
@@ -139,15 +138,20 @@ class TransformFilter extends BaseTransformFilter
      * @return array the array representation of the pagination
      * @see addPaginationHeaders()
      */
-    protected function transformPagination(Pagination $pagination)
+    protected function transformPagination(Pagination $pagination): array
     {
+        $metaEnvelope = [];
+
+        if (null !== ($transformer = $this->resolveTransformer($this->pagination))) {
+            $metaEnvelope = Factory::item(
+                $transformer,
+                $pagination
+            );
+        };
+
         return [
             $this->linksEnvelope => Link::serialize($pagination->getLinks(true)),
-            $this->metaEnvelope => Flux::getInstance()->item(
-                $this->pagination,
-                $pagination,
-                $this->scope
-            )
+            $this->metaEnvelope => $metaEnvelope
         ];
     }
 
@@ -156,12 +160,15 @@ class TransformFilter extends BaseTransformFilter
      * @param Model $model
      * @return array the array representation of the errors
      */
-    protected function transformModelErrors(Model $model)
+    protected function transformModelErrors(Model $model): array
     {
-        return Flux::getInstance()->item(
-            $this->error,
-            $model,
-            $this->scope
+        if (null === ($transformer = $this->resolveTransformer($this->error))) {
+            return [];
+        };
+
+        return Factory::item(
+            $transformer,
+            $model
         );
     }
 

@@ -40,7 +40,7 @@ class Restful extends Plugin
 
         // Components
         $this->setComponents([
-            'authManage' => [
+            'authManager' => [
                 "class" => DbManager::class,
                 "itemTable" => "{{%restful_rbac_item}}",
                 "itemChildTable" => "{{%restful_rbac_item_child}}",

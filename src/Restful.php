@@ -10,25 +10,53 @@ namespace flipbox\craft\restful;
 
 use Craft;
 use craft\base\Plugin;
-use craft\web\twig\variables\CraftVariable;
 use flipbox\craft\rbac\DbManager;
 use flipbox\craft\restful\models\Settings as SettingsModel;
-use flipbox\craft\restful\web\twig\variables\Restful as RestfulVariable;
-use yii\base\Event;
-use yii\log\Logger;
+use flipbox\ember\modules\LoggerTrait;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
  * @since 1.0.0
  *
  * @method SettingsModel getSettings()
+ *
+ * @property DbManager $authManager
  */
 class Restful extends Plugin
 {
+    use LoggerTrait;
+
     /**
      * The transformer scope
      */
-    const TRANSFORMER_SCOPE = 'rest';
+    const FLUX_SCOPE = 'rest';
+
+    /**
+     * @inheritdoc
+     */
+    public function init()
+    {
+        parent::init();
+
+        // Components
+        $this->setComponents([
+            'authManager' => [
+                "class" => DbManager::class,
+                "itemTable" => "{{%restful_rbac_item}}",
+                "itemChildTable" => "{{%restful_rbac_item_child}}",
+                "assignmentTable" => "{{%restful_rbac_assignment}}",
+                "ruleTable" => "{{%restful_rbac_rule}}"
+            ]
+        ]);
+    }
+
+    /**
+     * @inheritdoc
+     */
+    protected static function getLogFileName(): string
+    {
+        return 'restful';
+    }
 
     /**
      * @inheritdoc
@@ -54,84 +82,18 @@ class Restful extends Plugin
         return parent::beforeInstall();
     }
 
-
     /*******************************************
      * SERVICES
      *******************************************/
 
     /**
+     * @noinspection PhpDocMissingThrowsInspection
      * @return DbManager
      */
     public function getAuthManager(): DbManager
     {
+        /** @noinspection PhpUnhandledExceptionInspection */
+        /** @noinspection PhpIncompatibleReturnTypeInspection */
         return $this->get('authManager');
-    }
-
-
-    /*******************************************
-     * LOGGING
-     *******************************************/
-
-    /**
-     * Logs a trace message.
-     * Trace messages are logged mainly for development purpose to see
-     * the execution work flow of some code.
-     * @param string $message the message to be logged.
-     * @param string $category the category of the message.
-     */
-    public static function trace($message, string $category = null)
-    {
-        Craft::getLogger()->log($message, Logger::LEVEL_TRACE, self::normalizeCategory($category));
-    }
-
-    /**
-     * Logs an error message.
-     * An error message is typically logged when an unrecoverable error occurs
-     * during the execution of an application.
-     * @param string $message the message to be logged.
-     * @param string $category the category of the message.
-     */
-    public static function error($message, string $category = null)
-    {
-        Craft::getLogger()->log($message, Logger::LEVEL_ERROR, self::normalizeCategory($category));
-    }
-
-    /**
-     * Logs a warning message.
-     * A warning message is typically logged when an error occurs while the execution
-     * can still continue.
-     * @param string $message the message to be logged.
-     * @param string $category the category of the message.
-     */
-    public static function warning($message, string $category = null)
-    {
-        Craft::getLogger()->log($message, Logger::LEVEL_WARNING, self::normalizeCategory($category));
-    }
-
-    /**
-     * Logs an informative message.
-     * An informative message is typically logged by an application to keep record of
-     * something important (e.g. an administrator logs in).
-     * @param string $message the message to be logged.
-     * @param string $category the category of the message.
-     */
-    public static function info($message, string $category = null)
-    {
-        Craft::getLogger()->log($message, Logger::LEVEL_INFO, self::normalizeCategory($category));
-    }
-
-    /**
-     * @param string|null $category
-     * @return string
-     */
-    private static function normalizeCategory(string $category = null)
-    {
-        $normalizedCategory = 'Restful';
-
-        if ($category === null) {
-            return $normalizedCategory;
-        }
-
-        return $normalizedCategory . ': ' . $category;
     }
 }

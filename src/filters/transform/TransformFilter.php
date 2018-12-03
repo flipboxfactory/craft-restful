@@ -11,7 +11,7 @@ namespace flipbox\craft\restful\filters\transform;
 use Craft;
 use flipbox\craft\restful\Restful;
 use flipbox\flux\filters\TransformFilter as BaseTransformFilter;
-use Flipbox\Transform\Factory;
+use flipbox\transform\Factory;
 use yii\base\Model;
 use yii\data\DataProviderInterface;
 use yii\data\Pagination;

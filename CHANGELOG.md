@@ -1,5 +1,9 @@
 Changelog
 =========
+## 1.0.0-rc.4
+### Changed
+- Upgraded Transform package that uses lowercase namespaces
+
 ## 1.0.0-rc.3
 ### Fixed
 - Incorrect component name

@@ -12,7 +12,7 @@ use Craft;
 use craft\base\Plugin;
 use flipbox\craft\rbac\DbManager;
 use flipbox\craft\restful\models\Settings as SettingsModel;
-use flipbox\ember\modules\LoggerTrait;
+use flipbox\craft\ember\modules\LoggerTrait;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>

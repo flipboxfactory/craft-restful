@@ -55,7 +55,7 @@ class Restful extends Plugin
         Event::on(
             Flux::class,
             Flux::EVENT_REGISTER_SCOPES,
-            function(RegisterScopesEvent $event) {
+            function (RegisterScopesEvent $event) {
                 $event->scopes[] = static::FLUX_SCOPE;
             }
         );

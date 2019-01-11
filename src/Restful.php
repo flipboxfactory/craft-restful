@@ -13,6 +13,9 @@ use craft\base\Plugin;
 use flipbox\craft\rbac\DbManager;
 use flipbox\craft\restful\models\Settings as SettingsModel;
 use flipbox\craft\ember\modules\LoggerTrait;
+use flipbox\flux\events\RegisterScopesEvent;
+use flipbox\flux\Flux;
+use yii\base\Event;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
@@ -48,6 +51,14 @@ class Restful extends Plugin
                 "ruleTable" => "{{%restful_rbac_rule}}"
             ]
         ]);
+
+        Event::on(
+            Flux::class,
+            Flux::EVENT_REGISTER_SCOPES,
+            function(RegisterScopesEvent $event) {
+                $event->scopes[] = static::FLUX_SCOPE;
+            }
+        );
     }
 
     /**

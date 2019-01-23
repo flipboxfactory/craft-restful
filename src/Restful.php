@@ -9,7 +9,6 @@
 namespace flipbox\craft\restful;
 
 use craft\base\Plugin;
-use flipbox\craft\rbac\DbManager;
 use flipbox\craft\restful\models\Settings as SettingsModel;
 use flipbox\craft\ember\modules\LoggerTrait;
 
@@ -18,36 +17,10 @@ use flipbox\craft\ember\modules\LoggerTrait;
  * @since 1.0.0
  *
  * @method SettingsModel getSettings()
- *
- * @property DbManager $authManager
  */
 class Restful extends Plugin
 {
     use LoggerTrait;
-
-    /**
-     * The transformer scope
-     */
-    const FLUX_SCOPE = 'rest';
-
-    /**
-     * @inheritdoc
-     */
-    public function init()
-    {
-        parent::init();
-
-        // Components
-        $this->setComponents([
-            'authManager' => [
-                "class" => DbManager::class,
-                "itemTable" => "{{%restful_rbac_item}}",
-                "itemChildTable" => "{{%restful_rbac_item_child}}",
-                "assignmentTable" => "{{%restful_rbac_assignment}}",
-                "ruleTable" => "{{%restful_rbac_rule}}"
-            ]
-        ]);
-    }
 
     /**
      * @inheritdoc
@@ -63,20 +36,5 @@ class Restful extends Plugin
     public function createSettingsModel()
     {
         return new SettingsModel();
-    }
-
-    /*******************************************
-     * SERVICES
-     *******************************************/
-
-    /**
-     * @noinspection PhpDocMissingThrowsInspection
-     * @return DbManager
-     */
-    public function getAuthManager(): DbManager
-    {
-        /** @noinspection PhpUnhandledExceptionInspection */
-        /** @noinspection PhpIncompatibleReturnTypeInspection */
-        return $this->get('authManager');
     }
 }

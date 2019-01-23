@@ -8,7 +8,9 @@
 
 namespace flipbox\craft\restful\models;
 
+use Craft;
 use craft\base\Model;
+use yii\rbac\CheckAccessInterface;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
@@ -40,6 +42,11 @@ class Settings extends Model
      * @var array
      */
     private $authMethods = [];
+
+    /**
+     * @var null|CheckAccessInterface
+     */
+    private $accessChecker;
 
     /**
      * @var array
@@ -79,6 +86,24 @@ class Settings extends Model
     public function setAuthMethods(array $authMethods = [])
     {
         $this->authMethods = $authMethods;
+        return $this;
+    }
+
+    /**
+     * @return null|CheckAccessInterface
+     */
+    public function getAccessChecker()
+    {
+        return $this->accessChecker ?: Craft::$app->getAuthManager();
+    }
+
+    /**
+     * @param CheckAccessInterface|null $authManager
+     * @return $this
+     */
+    public function setAccessChecker(CheckAccessInterface $authManager = null)
+    {
+        $this->accessChecker = $authManager;
         return $this;
     }
 

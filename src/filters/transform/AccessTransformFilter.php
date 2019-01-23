@@ -61,7 +61,9 @@ class AccessTransformFilter extends TransformFilter
             $this->user = Instance::ensure($this->user, User::class);
         }
         foreach ($this->rules as $i => $rule) {
-            $this->rules[$i] = $this->resolveRule($rule);
+            if (null !== ($rule = $this->resolveRule($rule))) {
+                $this->rules[$i] = $rule;
+            }
         }
     }
 
@@ -83,23 +85,34 @@ class AccessTransformFilter extends TransformFilter
 
     /**
      * @param $rule
-     * @return TransformRule
+     * @return TransformFilter
      * @throws \yii\base\InvalidConfigException
      */
     protected function resolveRule($rule)
     {
-        if (is_array($rule)) {
-            $rule = Craft::createObject(
-                array_merge(
-                    $this->ruleConfig,
-                    [
-                        'transformer' => $this->transformer
-                    ],
-                    $rule
-                )
-            );
+        if ($rule instanceof TransformRule) {
+            return $rule;
         }
 
-        return $rule;
+        if (is_string($rule)) {
+            $rule = ['class' => $rule];
+        }
+
+        if (!is_array($rule)) {
+            $rule = [$rule];
+        }
+
+        /** @var TransformRule $rule */
+        $rule = Craft::createObject(
+            array_merge(
+                $this->ruleConfig,
+                [
+                    'transformer' => $this->transformer
+                ],
+                $rule
+            )
+        );
+
+        return $rule instanceof TransformRule ? $rule : null;
     }
 }

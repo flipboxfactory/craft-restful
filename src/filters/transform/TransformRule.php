@@ -93,7 +93,7 @@ class TransformRule extends TransformFilter
         $this->actions = $this->resolveActions($this->actions);
 
         if (!$this->accessChecker instanceof CheckAccessInterface) {
-            $this->accessChecker = Restful::getInstance()->getAuthManager();
+            $this->accessChecker = Restful::getInstance()->getSettings()->getAccessChecker();
         }
 
         parent::init();

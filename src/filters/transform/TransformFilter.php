@@ -216,7 +216,7 @@ class TransformFilter extends ActionFilter
 
         $result = $dataProvider;
 
-        if (null === ($transformer = TransformerHelper::resolve($this->transformer()))) {
+        if (null !== ($transformer = TransformerHelper::resolve($this->transformer()))) {
             $data = Factory::transform($this->getTransformConfig())
                 ->collection(
                     $transformer,

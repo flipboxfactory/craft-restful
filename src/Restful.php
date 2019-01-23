@@ -8,14 +8,10 @@
 
 namespace flipbox\craft\restful;
 
-use Craft;
 use craft\base\Plugin;
 use flipbox\craft\rbac\DbManager;
 use flipbox\craft\restful\models\Settings as SettingsModel;
 use flipbox\craft\ember\modules\LoggerTrait;
-use flipbox\flux\events\RegisterScopesEvent;
-use flipbox\flux\Flux;
-use yii\base\Event;
 
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
@@ -51,14 +47,6 @@ class Restful extends Plugin
                 "ruleTable" => "{{%restful_rbac_rule}}"
             ]
         ]);
-
-        Event::on(
-            Flux::class,
-            Flux::EVENT_REGISTER_SCOPES,
-            function (RegisterScopesEvent $event) {
-                $event->scopes[] = static::FLUX_SCOPE;
-            }
-        );
     }
 
     /**
@@ -75,22 +63,6 @@ class Restful extends Plugin
     public function createSettingsModel()
     {
         return new SettingsModel();
-    }
-
-    /**
-     * Ensure our dependencies are installed
-     *
-     * @return bool
-     * @throws \Throwable
-     * @throws \craft\errors\InvalidPluginException
-     */
-    public function beforeInstall(): bool
-    {
-        if (!Craft::$app->getPlugins()->getPlugin('flux')) {
-            Craft::$app->getPlugins()->installPlugin('flux');
-        }
-
-        return parent::beforeInstall();
     }
 
     /*******************************************

@@ -93,7 +93,6 @@ class AccessTransformFilter extends TransformFilter
                 array_merge(
                     $this->ruleConfig,
                     [
-                        'scope' => $this->scope,
                         'transformer' => $this->transformer
                     ],
                     $rule

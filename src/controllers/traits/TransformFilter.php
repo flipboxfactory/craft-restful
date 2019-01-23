@@ -14,6 +14,8 @@ use flipbox\craft\restful\filters\transform\TransformFilter as RestfulTransformF
 /**
  * @author Flipbox Factory <hello@flipboxfactory.com>
  * @since 1.0.0
+ *
+ * @deprecated
  */
 trait TransformFilter
 {

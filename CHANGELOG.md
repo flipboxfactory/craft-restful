@@ -1,5 +1,9 @@
 Changelog
 =========
+## 2.0.0 - 2019-01-23
+### Removed
+- Flux and RBAC dependencies
+
 ## 1.0.0-rc.3
 ### Fixed
 - Incorrect component name

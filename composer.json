@@ -6,7 +6,8 @@
   "require": {
     "craftcms/cms": "^3.0",
     "flipboxfactory/craft-rest": "^2.0",
-    "flipboxfactory/craft-ember": "^2.0"
+    "flipboxfactory/craft-ember": "^2.0",
+    "flipboxdigital/transform": "^3.0"
   },
   "require-dev": {
     "phpunit/phpunit": "^5.0",

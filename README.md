@@ -15,6 +15,9 @@ To install, use composer:
 composer require flipboxfactory/craft-restful
 ```
 
+## Usage
+With this plugin as the scaffolding, you'll need to register and build your own RESTful endpoints.  We've created a [test project as a reference](https://github.com/flipboxlabs/craft-restful-project).
+
 ## Testing
 
 ``` bash

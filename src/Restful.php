@@ -23,11 +23,16 @@ class Restful extends Plugin
     use LoggerTrait;
 
     /**
+     * @var string
+     */
+    public static $category = 'restful';
+
+    /**
      * @inheritdoc
      */
     protected static function getLogFileName(): string
     {
-        return 'restful';
+        return self::$category;
     }
 
     /**

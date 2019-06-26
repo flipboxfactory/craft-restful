@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 2.0.2 - 2019-06-26
+### Updated
+- CORS settings do not recursively merge; this allows the config to completely override settings rather than add to.
+
 ## 2.0.1 - 2019-06-26
 ### Fixed
 - Access should only be checked if an access checker is available.

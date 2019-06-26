@@ -8,7 +8,6 @@
 
 namespace flipbox\craft\restful\filters;
 
-use Craft;
 use flipbox\craft\restful\Restful;
 
 /**
@@ -29,6 +28,6 @@ class Cors extends \yii\filters\Cors
             Restful::getInstance()->getSettings()->getCORS()
         );
 
-        Craft::info(['CORS Filter: ' => $this->cors], 'restful');
+        Restful::info(['CORS Filter: ' => $this->cors], 'cors');
     }
 }

@@ -81,7 +81,7 @@ class TransformRule extends TransformFilter
     public $roleParams = [];
 
     /**
-     * @var CheckAccessInterface
+     * @var CheckAccessInterface|null
      */
     public $accessChecker;
 
@@ -167,6 +167,10 @@ class TransformRule extends TransformFilter
 
         if ($role === '@' && !$user->getIsGuest()) {
             return true;
+        }
+
+        if (!$this->accessChecker instanceof CheckAccessInterface) {
+            return false;
         }
 
         $roleParams = $this->roleParams instanceof Closure ?

@@ -1,5 +1,10 @@
 Changelog
 =========
+
+## 2.0.1 - 2019-06-26
+### Fixed
+- Access should only be checked if an access checker is available.
+
 ## 2.0.0 - 2019-01-23
 ### Removed
 - Flux and RBAC dependencies

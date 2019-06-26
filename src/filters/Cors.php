@@ -8,8 +8,6 @@
 
 namespace flipbox\craft\restful\filters;
 
-use Craft;
-use craft\helpers\ArrayHelper;
 use flipbox\craft\restful\Restful;
 
 /**
@@ -25,11 +23,11 @@ class Cors extends \yii\filters\Cors
     {
         parent::init();
 
-        $this->cors = ArrayHelper::merge(
+        $this->cors = array_merge(
             $this->cors,
             Restful::getInstance()->getSettings()->getCORS()
         );
 
-        Craft::info(['CORS Filter: ' => $this->cors], 'restful');
+        Restful::info(['CORS Filter: ' => $this->cors], 'cors');
     }
 }

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## Unreleased
+### Added
+- Response log filter which allows specific responses to be logged
+
 ## 2.0.2 - 2019-06-26
 ### Updated
 - CORS settings do not recursively merge; this allows the config to completely override settings rather than add to.

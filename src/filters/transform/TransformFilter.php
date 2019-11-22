@@ -193,6 +193,10 @@ class TransformFilter extends ActionFilter
      */
     protected function transformModelErrors(Model $model): array
     {
+        if (Craft::$app->getResponse()->getIsSuccessful()) {
+            Craft::$app->getResponse()->setStatusCode(400, 'Errors');
+        }
+
         if (null === ($transformer = TransformerHelper::resolve($this->error))) {
             return [];
         };

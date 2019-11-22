@@ -27,13 +27,6 @@ class ResponseLogger extends ActionFilter
     use ActionTrait;
 
     /**
-     * @var int
-     */
-    public $level = Logger::LEVEL_WARNING;
-
-    public $test = ['info' => ['200']];
-
-    /**
      * @param Action $action
      * @param mixed $result
      * @return mixed
@@ -96,7 +89,7 @@ class ResponseLogger extends ActionFilter
             return $level;
         }
 
-        return $this->level;
+        return null;
     }
 
     /**
@@ -106,17 +99,17 @@ class ResponseLogger extends ActionFilter
     protected function findLogLevelFromAction(string $action)
     {
         // Default format
-        $messages = $this->findAction($action);
+        $levels = $this->findAction($action);
 
-        if (!is_array($messages)) {
+        if (!is_array($levels)) {
             return null;
         }
 
-        return $this->resolveMessageStatusCode($messages);
+        return $this->resolveMessageStatusCode($levels);
     }
 
     /**
-     * @param array $messages
+     * @param array $levels
      * @return int|null
      */
     protected function resolveMessageStatusCode(array $levels)

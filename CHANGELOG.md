@@ -4,6 +4,7 @@ Changelog
 ## Unreleased
 ### Added
 - Response log filter which allows specific responses to be logged
+- When transforming a model, if errors are present and the response has a successful status code, automatically apply a 400 status code to the response.
 
 ## 2.0.2 - 2019-06-26
 ### Updated

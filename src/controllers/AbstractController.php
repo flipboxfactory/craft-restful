@@ -44,13 +44,12 @@ abstract class AbstractController extends Controller
                     'actions' => [
                         '*' => [
                             Logger::LEVEL_INFO => [
-                                [200, '>='], // All 4xx status codes
+                                [200, '>='], // All 20xx status codes
                                 [300, '<']
                             ],
-                            Logger::LEVEL_ERROR, [
+                            Logger::LEVEL_ERROR => [
                                 [400, '>='], // All 4xx status codes
-                                [600, '<'], // All 5xx status codes
-                                [404, '!=']
+                                [600, '<'] // All 5xx status codes
                             ]
                         ]
                     ]

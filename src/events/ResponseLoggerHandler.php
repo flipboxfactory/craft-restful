@@ -9,6 +9,7 @@
 namespace flipbox\craft\restful\events;
 
 use Craft;
+use flipbox\craft\restful\Restful;
 use yii\base\Event;
 use yii\log\Logger;
 use yii\web\Response;
@@ -30,12 +31,21 @@ class ResponseLoggerHandler
     public static $category = 'application';
 
     /**
+     * @var bool
+     */
+    public static $audit = false;
+
+    /**
      * @param Event $event
      */
     public static function handle(Event $event)
     {
         /** @var Response $response */
         $response = $event->sender;
+
+        $level = $event->data['level'] ?? static::$level;
+        $category = $event->data['category'] ?? static::$category;
+        $audit = $event->data['audit'] ?? static::$audit;
 
         Craft::getLogger()->log(
             sprintf(
@@ -44,8 +54,27 @@ class ResponseLoggerHandler
                 $response->getStatusCode(),
                 $response->content
             ),
-            $event->data['level'] ?? static::$level,
-            $event->data['category'] ?? static::$category
+            $level,
+            self::loggerCategory($category, $audit)
         );
+    }
+
+    /**
+     * The log categories
+     *
+     * @param string|null $category
+     * @param bool $audit flag as an audit message.
+     * @return string
+     */
+    protected static function loggerCategory(string $category = null, bool $audit = false): string
+    {
+        /** @noinspection PhpUndefinedFieldInspection */
+        $prefix = Restful::$category ? (Restful::$category . ($audit ? ':audit' : '')) : '';
+
+        if (empty($category)) {
+            return $prefix;
+        }
+
+        return ($prefix ? $prefix . ':' : '') . $category;
     }
 }

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 2.2.0 - 2023-05-23
+### Added
+- Response logging can be marked as 'audit'
+
 ## 2.1.0 - 2019-11-22
 ### Added
 - Response log filter which allows specific responses to be logged

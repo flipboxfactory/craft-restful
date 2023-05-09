@@ -15,7 +15,6 @@ use yii\base\Action;
 use yii\base\ActionFilter;
 use yii\base\Event;
 use yii\helpers\Json;
-use yii\log\Logger;
 use yii\web\Response;
 
 /**
@@ -24,7 +23,7 @@ use yii\web\Response;
  */
 class ResponseLogger extends ActionFilter
 {
-    use ActionTrait;
+    use ActionTrait, AuditTrait;
 
     /**
      * @param Action $action
@@ -58,7 +57,8 @@ class ResponseLogger extends ActionFilter
                     'handle'
                 ],
                 [
-                    'level' => $level
+                    'level' => $level,
+                    'audit' => $this->findAuditAction($action->id)
                 ]
             );
         } catch (\Exception $e) {

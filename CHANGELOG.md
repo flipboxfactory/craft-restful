@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 3.0.0 - 2023-07-26
+### Added
+- Support for Craft 4
+
 ## 2.2.0 - 2023-05-23
 ### Added
 - Response logging can be marked as 'audit'

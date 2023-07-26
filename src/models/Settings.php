@@ -31,7 +31,7 @@ class Settings extends Model
     /**
      * @var array
      */
-    public $pageSizeLimit = [0, 1, 50, 100, 200, 500, 1000];
+    public $pageSizeLimit = [0, 1000];
 
     /**
      * @var int

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 3.0.1 - 2023-07-26
+### Fixed
+- Default pageSizeLimit changed to a min / max value
+- 
 ## 3.0.0 - 2023-07-26
 ### Added
 - Support for Craft 4

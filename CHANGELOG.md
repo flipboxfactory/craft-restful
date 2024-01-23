@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 3.0.2 - 2024-01-19
+### Fixed
+- Issue w/ settings model typing for Craft v4
+
 ## 3.0.1 - 2023-07-26
 ### Fixed
 - Default pageSizeLimit changed to a min / max value

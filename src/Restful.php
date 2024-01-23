@@ -8,6 +8,7 @@
 
 namespace flipbox\craft\restful;
 
+use craft\base\Model;
 use craft\base\Plugin;
 use flipbox\craft\restful\models\Settings as SettingsModel;
 use flipbox\craft\ember\modules\LoggerTrait;
@@ -38,7 +39,7 @@ class Restful extends Plugin
     /**
      * @inheritdoc
      */
-    public function createSettingsModel()
+    public function createSettingsModel(): ?Model
     {
         return new SettingsModel();
     }

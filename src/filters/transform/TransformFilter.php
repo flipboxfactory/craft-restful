@@ -210,7 +210,7 @@ class TransformFilter extends ActionFilter
     /**
      * Serializes a data provider.
      * @param DataProviderInterface $dataProvider
-     * @return array the array representation of the data provider.
+     * @return mixed|array|null|DataProviderInterface the array representation of the data provider.
      */
     protected function transformDataProvider(DataProviderInterface $dataProvider)
     {
@@ -237,7 +237,7 @@ class TransformFilter extends ActionFilter
         };
 
         // Halt
-        if ($result === null || $result instanceof DataProviderInterface) {
+        if ($result instanceof DataProviderInterface) {
             return $result;
         }
 

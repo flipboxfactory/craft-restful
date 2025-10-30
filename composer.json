@@ -1,12 +1,11 @@
 {
   "name": "flipboxfactory/craft-restful",
   "description": "A RESTful API for Craft CMS",
-  "version": "3.0.2",
+  "version": "5.0.0",
   "type": "craft-plugin",
   "require": {
-    "craftcms/cms": "^4.0",
-    "flipboxfactory/craft-rest": "^3.0",
-    "flipboxfactory/craft-ember": "^3.0",
+    "craftcms/cms": "^5.0",
+    "flipboxfactory/craft-rest": "^5.0",
     "flipboxdigital/transform": "^3.0"
   },
   "require-dev": {

@@ -59,6 +59,6 @@ trait AuditTrait
             $value = $this->auditActions[$action];
         }
 
-        return (boolean) $value;
+        return (boolean)$value;
     }
 }

@@ -1,6 +1,10 @@
 Changelog
 =========
 
+## 5.0.0 - 2025-10-30
+### Added
+- Support for Craft v5
+
 ## 3.0.2 - 2024-01-19
 ### Fixed
 - Issue w/ settings model typing for Craft v4
